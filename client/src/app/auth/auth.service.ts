@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 
 export class AuthService 
 {
-  isLogged: BehaviorSubject<boolean>;
+  //isLogged: BehaviorSubject<boolean>;
   isLoggedAsGuest: BehaviorSubject<boolean>;
   isLoggedAsSuperUser: BehaviorSubject<boolean>;
   isLoggingAsGuest: BehaviorSubject<boolean>;
@@ -21,7 +21,7 @@ export class AuthService
 
   constructor(private http: HttpClient) 
   { 
-    this.isLogged = new BehaviorSubject<boolean>(false);
+    //this.isLogged = new BehaviorSubject<boolean>(false);
     this.isLoggedAsGuest = new BehaviorSubject<boolean>(false);
     this.isLoggedAsSuperUser = new BehaviorSubject<boolean>(false);
     this.isLoggingAsGuest = new BehaviorSubject<boolean>(false);
@@ -65,18 +65,19 @@ export class AuthService
                  {
                   this.isLoggedAsSuperUser.next(true);
                   this.isLoggedAsGuest.next(true);
-                  this.isLogged.next(true);
+                  //this.isLogged.next(true);
                  }
                  else if (this.isLoggingAsGuest.getValue())
                  {
                   this.isLoggedAsGuest.next(true);
-                  this.isLogged.next(true);
+                  this.isLoggedAsSuperUser.next(false);
+                  //this.isLogged.next(true);
                  }
                  else
                  {
                   this.isLoggedAsSuperUser.next(false);
                   this.isLoggedAsGuest.next(false);
-                  this.isLogged.next(false);
+                  //this.isLogged.next(false);
                  }
               };
            }

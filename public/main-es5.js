@@ -1276,8 +1276,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       function AuthService(http) {
         _classCallCheck(this, AuthService);
 
-        this.http = http;
-        this.isLogged = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+        this.http = http; //this.isLogged = new BehaviorSubject<boolean>(false);
+
         this.isLoggedAsGuest = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
         this.isLoggedAsSuperUser = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
         this.isLoggingAsGuest = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
@@ -1317,19 +1317,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 if (_this2.isLoggingAsSuperUser.getValue()) {
                   _this2.isLoggedAsSuperUser.next(true);
 
-                  _this2.isLoggedAsGuest.next(true);
+                  _this2.isLoggedAsGuest.next(true); //this.isLogged.next(true);
 
-                  _this2.isLogged.next(true);
                 } else if (_this2.isLoggingAsGuest.getValue()) {
                   _this2.isLoggedAsGuest.next(true);
 
-                  _this2.isLogged.next(true);
+                  _this2.isLoggedAsSuperUser.next(false); //this.isLogged.next(true);
+
                 } else {
                   _this2.isLoggedAsSuperUser.next(false);
 
-                  _this2.isLoggedAsGuest.next(false);
+                  _this2.isLoggedAsGuest.next(false); //this.isLogged.next(false);
 
-                  _this2.isLogged.next(false);
                 }
               }
 

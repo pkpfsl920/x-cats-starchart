@@ -800,7 +800,7 @@ __webpack_require__.r(__webpack_exports__);
 class AuthService {
     constructor(http) {
         this.http = http;
-        this.isLogged = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+        //this.isLogged = new BehaviorSubject<boolean>(false);
         this.isLoggedAsGuest = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
         this.isLoggedAsSuperUser = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
         this.isLoggingAsGuest = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
@@ -832,16 +832,17 @@ class AuthService {
                     if (this.isLoggingAsSuperUser.getValue()) {
                         this.isLoggedAsSuperUser.next(true);
                         this.isLoggedAsGuest.next(true);
-                        this.isLogged.next(true);
+                        //this.isLogged.next(true);
                     }
                     else if (this.isLoggingAsGuest.getValue()) {
                         this.isLoggedAsGuest.next(true);
-                        this.isLogged.next(true);
+                        this.isLoggedAsSuperUser.next(false);
+                        //this.isLogged.next(true);
                     }
                     else {
                         this.isLoggedAsSuperUser.next(false);
                         this.isLoggedAsGuest.next(false);
-                        this.isLogged.next(false);
+                        //this.isLogged.next(false);
                     }
                 }
                 ;
