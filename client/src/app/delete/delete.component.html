@@ -1,0 +1,23 @@
+
+<hr>
+
+<section>
+    <br>
+    <h5>What data collection do you want to delete</h5>
+    <form [formGroup]="form" (ngSubmit)="onDeletePost()">
+      <label>
+        Id:
+        <input type="text" formControlName="id" required>
+      </label>
+      <br>
+      <!--
+      <div *ngIf="firstname.invalid && firstname.errors.required && !firstname.pristine">
+        Name is required.
+      </div>
+      <br>
+    -->
+      <input type="submit" value="Delete"/>
+    </form>
+</section>
+
+<hr />

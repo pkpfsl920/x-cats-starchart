@@ -1,0 +1,58 @@
+
+<!-- <h6>(  * A Reactive Form Display *)</h6> -->
+
+<div class="container">
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" 
+             routerLink="/" 
+             routerLinkActive="active-link"
+             [routerLinkActiveOptions]="{exact: true}">
+          Home</a>
+      <!-- <a class="nav-link active" routerLink="/">Home</a> -->
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+             [routerLink]="['/add']" 
+             routerLinkActive="active-link">
+          Add Data</a>
+      <!-- <a class="nav-link" [routerLink]="['/add']">Add Data</a> -->
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+             [routerLink]="['/fetch']" 
+             routerLinkActive="active-link">
+          Fetch Data</a>
+      <!-- <a class="nav-link" [routerLink]="['/fetch']">Fetch Data</a> -->
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+             [routerLink]="['/change']" 
+             routerLinkActive="active-link">
+          Change Data</a>
+      <!-- <a class="nav-link" [routerLink]="['/change']">Change Data</a> -->
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+             [routerLink]="['/delete']" 
+             routerLinkActive="active-link">
+          Delete Data</a>
+      <!-- <a class="nav-link" [routerLink]="['/delete']">Delete Data</a> -->
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+             [routerLink]="['/chart']" 
+             routerLinkActive="active-link">
+          Display Chart</a>
+      <!-- <a class="nav-link" [routerLink]="['/delete']">Delete Data</a> -->
+    </li>
+  </ul>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,61 @@
+.container {
+    margin-top: 30px;
+  }
+  
+  .row {
+    margin: 20px 0;
+  }
+  
+  p
+  {
+    color:rgb(182, 7, 7);
+  }
+  
+  h2
+  {
+    color: green;
+  }
+  
+  
+  h5
+  {
+    color: darkorange;
+  }
+  
+  h6
+  {
+    color: rgb(8, 175, 204);
+  }
+  
+  hr
+  {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    height:2px;
+    border-width:0;
+    color:red;
+    background-color:rgb(255, 174, 0)
+  }
+  
+  .myP
+  {
+    color:burlywood;
+    text-align: center;
+  }
+  
+  .myH6
+  {
+    color: rgb(255, 0, 170);
+    text-align: justify;
+  }
+  
+  .list-group
+  {
+    border: 5px outset palegreen;
+    background-color: lightblue;    
+    text-align: center;
+  }

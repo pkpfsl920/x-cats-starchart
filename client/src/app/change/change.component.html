@@ -1,0 +1,113 @@
+
+<hr />
+
+<section>
+    <br>
+    <h5>What data collection do you want to change?</h5>
+    <form [formGroup]="form" (ngSubmit)="onPutPost()">
+      <label>
+        Id:
+        <input type="text" formControlName="id" required>
+      </label>
+      <br>
+      <label>
+        FirstName:
+        <input type="text" formControlName="firstname" required>
+      </label>
+      <br>
+      <label>
+        LastName:
+        <input type="text" formControlName="lastname">
+      </label>
+      <br>
+      <label>
+        Hours:
+        <input type="text" formControlName="hours">
+      </label>
+      <br>
+      <br>
+      <label>
+        Fundraising Triangle:
+        <input type="text" formControlName="fundRaisingTriangle">
+      </label>
+      <br>
+      <br>
+      <label>
+        Journal Circle:
+        <input type="text" formControlName="journalCircle">
+      </label>
+      <br>
+      <br>
+      <label>
+        Community Square:
+        <input type="text" formControlName="communitySquare">
+      </label>
+      <br>
+      <br>
+      <label>
+        Pre-session Paw:
+        <input type="text" formControlName="preSessionPaw">
+      </label>
+      <br>
+      <br>
+      <label>
+        Extra Hours Paw:
+        <input type="text" formControlName="extraHoursPaw">
+      </label>
+      <br>
+      <br>
+      <label>
+        Fund Raising Paw:
+        <input type="text" formControlName="fundRaisingPaw">
+      </label>
+      <br>
+      <br>
+      <label>
+        Journal Paw:
+        <input type="text" formControlName="journalPaw">
+      </label>
+      <br>
+      <br>
+      <label>
+        Community Paw:
+        <input type="text" formControlName="communityPaw">
+      </label>
+      <br>
+      <br>
+      <label>
+        Project Paw:
+        <input type="text" formControlName="projectPaw">
+      </label>
+      <br>
+      <br>
+      <label>
+        Casual:
+        <input type="text" formControlName="casual" required>
+      </label>
+      <br>
+      <label>
+        Junior Varsity:
+        <input type="text" formControlName="juniorVarsity" required>
+      </label>
+      <br>
+      <label>
+        Varsity:
+        <input type="text" formControlName="varsity">
+      </label>
+      <br>
+      <label>
+        Target Varsity Hours:
+        <input type="text" formControlName="targetVarsityHours">
+      </label>
+      <br>
+      <!--
+      <div *ngIf="firstname.invalid && firstname.errors.required && !firstname.pristine">
+        Name is required.
+      </div>
+      <br>
+    -->
+      <input type="submit" value="Change Data"/>
+    </form>
+</section>
+
+<hr />
