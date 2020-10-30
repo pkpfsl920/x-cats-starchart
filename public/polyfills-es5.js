@@ -14101,7 +14101,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         };
       };
 
-      function AsyncIterator(generator, PromiseImpl) {
+      function AsyncIterator(generator) {
         function invoke(method, arg, resolve, reject) {
           var record = tryCatch(generator[method], generator, arg);
 
@@ -14112,14 +14112,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var value = result.value;
 
             if (value && typeof value === "object" && hasOwn.call(value, "__await")) {
-              return PromiseImpl.resolve(value.__await).then(function (value) {
+              return Promise.resolve(value.__await).then(function (value) {
                 invoke("next", value, resolve, reject);
               }, function (err) {
                 invoke("throw", err, resolve, reject);
               });
             }
 
-            return PromiseImpl.resolve(value).then(function (unwrapped) {
+            return Promise.resolve(value).then(function (unwrapped) {
               // When a yielded Promise is resolved, its final value becomes
               // the .value of the Promise<{value,done}> result for the
               // current iteration.
@@ -14137,7 +14137,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
         function enqueue(method, arg) {
           function callInvokeWithMethodAndArg() {
-            return new PromiseImpl(function (resolve, reject) {
+            return new Promise(function (resolve, reject) {
               invoke(method, arg, resolve, reject);
             });
           }
@@ -14174,9 +14174,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       // AsyncIterator objects; they just return a Promise for the value of
       // the final result produced by the iterator.
 
-      exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-        if (PromiseImpl === void 0) PromiseImpl = Promise;
-        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+      exports.async = function (innerFn, outerFn, self, tryLocsList) {
+        var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList));
         return exports.isGeneratorFunction(outerFn) ? iter // If outerFn is a generator, return the full iterator.
         : iter.next().then(function (result) {
           return result.done ? result.value : iter.next();
@@ -18899,7 +18898,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! C:\Projects\Angular\Sandbox\fullstack-server\client\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es5-polyfills.js */
+    /*! C:\Projects\Angular\Sandbox\x-server_sandbox\client\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es5-polyfills.js */
     "./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 
     __webpack_require__(
@@ -18907,7 +18906,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     "./node_modules/zone.js/dist/zone-legacy.js");
 
     module.exports = __webpack_require__(
-    /*! C:\Projects\Angular\Sandbox\fullstack-server\client\src\polyfills.ts */
+    /*! C:\Projects\Angular\Sandbox\x-server_sandbox\client\src\polyfills.ts */
     "./src/polyfills.ts");
     /***/
   }

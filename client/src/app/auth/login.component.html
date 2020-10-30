@@ -1,5 +1,5 @@
 
-
+<!--
 <h5> Please login </h5>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -11,5 +11,42 @@
       <label for="password">Password</label>
       <input type="password" id="password" formControlName="password">
     </div>
-    <button type="submit" [disabled]="!loginForm.valid">Log me in</button>
+    <button type="submit" [disabled]="!loginForm.valid">Submit</button>
 </form>
+-->
+
+<div class="d-flex justify-content-md-center">
+  <div class="loginbox">
+      <div class="d-flex justify-content-md-center">
+          <!--<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)"> -->
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <h2 class="loginhead">Please Login</h2>
+              <div class="form-group">
+                  <!--
+                  <div [hidden]="!loginForm.valid" class="alert alert-danger"> 
+                    Please Fill the form
+                  </div> 
+                  -->
+                 <label for="email">User Email</label>
+                 <input type="email" id="email" formControlName="email" class="form-control justify-content-md-center" aria-describedby="emailHelp" placeholder="Enter Email">
+                 <!--
+                 <label for="exampleInputEmail1">User Name</label>
+                 <input type="text" [(ngModel)]="model.userName" class="form-control" required name="userName" aria-describedby="emailHelp" placeholder="Enter Username">
+                 -->
+                 <small id="emailHelp" class="form-text text-muted">Go X-Cats!!!</small>
+              </div>
+              <div class="form-group">
+                 <label for="password">Password</label>
+                 <input type="password" id="password" formControlName="password" class="form-control" placeholder="Enter Password">
+                 <!--
+                 <label for="exampleInputPassword1">Password</label>
+                 <input type="password" [(ngModel)]="model.password" class="form-control" name="password" required placeholder="Password">
+                 -->
+              </div>
+              <div class="btnholder">
+                  <button type="submit" class="btn btn-danger justify-content-md-center">Submit</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

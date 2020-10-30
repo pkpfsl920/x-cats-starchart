@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from "@angular/common/http";
-import { Observable, BehaviorSubject } from "rxjs";
+import { Observable, BehaviorSubject, Subject } from "rxjs";
 import { map } from 'rxjs/operators';
 
 
@@ -11,23 +11,44 @@ import { map } from 'rxjs/operators';
 
 export class AuthService 
 {
-  //isLogged: BehaviorSubject<boolean>;
+
   isLoggedAsGuest: BehaviorSubject<boolean>;
   isLoggedAsSuperUser: BehaviorSubject<boolean>;
   isLoggingAsGuest: BehaviorSubject<boolean>;
   isLoggingAsSuperUser: BehaviorSubject<boolean>;
 
+  userLoggedInName: Subject<String>;
+
   loginStatus: Boolean;
 
   constructor(private http: HttpClient) 
   { 
-    //this.isLogged = new BehaviorSubject<boolean>(false);
+    //let userName:string = "Guest";
+
     this.isLoggedAsGuest = new BehaviorSubject<boolean>(false);
     this.isLoggedAsSuperUser = new BehaviorSubject<boolean>(false);
     this.isLoggingAsGuest = new BehaviorSubject<boolean>(false);
     this.isLoggingAsSuperUser = new BehaviorSubject<boolean>(false);
 
+    this.userLoggedInName = new Subject<String>();
+    this.userLoggedInName.next("Guest");
+
     this.loginStatus = false;
+  }
+
+  setUserLogOut() 
+  {
+    console.log("auth.service - setUserLogOut()");
+    this.isLoggedAsGuest.next(false);
+    this.isLoggedAsSuperUser.next(false);
+    this.userLoggedInName.next("Guest");
+  }
+
+  getUserName(): Observable<String>
+  {
+   console.log("auth.service - getUserName()");
+
+   return this.userLoggedInName.asObservable();
   }
 
   login(email: String, password: String): Observable<boolean> 
@@ -35,7 +56,6 @@ export class AuthService
     var body = {};
     body['email'] = email;
     body['password'] = password;
-    //body['loginStatus'] = this.loginStatus;
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -46,8 +66,7 @@ export class AuthService
 
         .pipe( map((response: any) => 
         {
-           console.log("auth.service - isDBConnected().pipe")
-           console.log("auth.service - isDBConnected().pipe: response =  " + response)
+           console.log("auth.service - login(..)http.pipe: response =  " + response);
            let stringyData = JSON.stringify(response);
            var myObj = JSON.parse(stringyData);
            console.log(myObj);
@@ -63,24 +82,26 @@ export class AuthService
               {
                  if (this.isLoggingAsSuperUser.getValue())
                  {
-                  this.isLoggedAsSuperUser.next(true);
-                  this.isLoggedAsGuest.next(true);
-                  //this.isLogged.next(true);
+                   this.isLoggedAsSuperUser.next(true);
+                   this.isLoggedAsGuest.next(true);
+                   this.userLoggedInName.next(email);
+                   console.log("auth.service - login(..).http.pipe: LoggedAsSuperUser")
                  }
                  else if (this.isLoggingAsGuest.getValue())
                  {
-                  this.isLoggedAsGuest.next(true);
-                  this.isLoggedAsSuperUser.next(false);
-                  //this.isLogged.next(true);
+                   this.isLoggedAsGuest.next(true);
+                   this.isLoggedAsSuperUser.next(false);
+                   this.userLoggedInName.next(email);
+                   console.log("auth.service - login(..).http.pipe: LoggedAsGuest")
                  }
                  else
                  {
-                  this.isLoggedAsSuperUser.next(false);
-                  this.isLoggedAsGuest.next(false);
-                  //this.isLogged.next(false);
+                   this.isLoggedAsSuperUser.next(false);
+                   this.isLoggedAsGuest.next(false);
+                   console.log("auth.service - login(..).http.pipe: Not Logged")
                  }
-              };
-           }
+              }
+           };
            this.isLoggingAsGuest.next(false);
            this.isLoggingAsSuperUser.next(false);
            response = true;

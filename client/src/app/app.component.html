@@ -1,5 +1,50 @@
 
-<!-- <h6>(  * A Reactive Form Display *)</h6> -->
+<!--
+<div class="card bg-light mb-3" style="max-width: 12rem; max-height: 8rem;">
+  <div class="card-header">You Are Logged In As:</div>
+  <div class="card-body">
+    <div class="modal-body">
+      {{loggedInName}}
+   </div>
+  </div>
+</div>
+
+<div class="modal-dialog modal-sm" style="max-width: 14rem;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div *ngIf="!showMsg; else notShowMsg">
+        <h6 id="dialog-child-name" class="modal-title pull-left">
+          Welcome Guest User
+        </h6>
+      </div>
+      <ng-template #notShowMsg>
+        <h6>
+          You Are Logged In As:
+        </h6>
+      </ng-template>
+      <div *ngIf="showMsg; ">
+        <div class="modal-body">
+          {{loggedInName}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+
+<div class="modal-dialog modal-md" style="max-width: 14rem;">
+  <div class="modal-content">
+    <div class="modal-header" style="color:rgb(7, 9, 126);background-color:rgb(170, 156, 137)">
+      <h6 id="dialog-child-name" class="modal-title pull-left">
+        You Are Logged In As:
+      </h6>
+    </div>
+    <div class="modal-body">
+       {{loggedInName}}
+    </div>
+  </div>
+</div>
 
 <div class="container">
 
@@ -10,42 +55,36 @@
              routerLinkActive="active-link"
              [routerLinkActiveOptions]="{exact: true}">
           Home</a>
-      <!-- <a class="nav-link active" routerLink="/">Home</a> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" 
              [routerLink]="['/add']" 
              routerLinkActive="active-link">
           Add Data</a>
-      <!-- <a class="nav-link" [routerLink]="['/add']">Add Data</a> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" 
              [routerLink]="['/fetch']" 
              routerLinkActive="active-link">
           Fetch Data</a>
-      <!-- <a class="nav-link" [routerLink]="['/fetch']">Fetch Data</a> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" 
              [routerLink]="['/change']" 
              routerLinkActive="active-link">
           Change Data</a>
-      <!-- <a class="nav-link" [routerLink]="['/change']">Change Data</a> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" 
              [routerLink]="['/delete']" 
              routerLinkActive="active-link">
           Delete Data</a>
-      <!-- <a class="nav-link" [routerLink]="['/delete']">Delete Data</a> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" 
              [routerLink]="['/chart']" 
              routerLinkActive="active-link">
           Display Chart</a>
-      <!-- <a class="nav-link" [routerLink]="['/delete']">Delete Data</a> -->
     </li>
   </ul>
 
@@ -56,3 +95,28 @@
   </div>
 </div>
 
+
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-child-name">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         {{idleState}}
+        <div class="row mrgbtm">
+          <div class="col-md-6">
+              <button type="button" (click)="logout()" class="btn btn-danger">Logout</button>
+          </div>
+          <div class="col-md-6">
+              <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
